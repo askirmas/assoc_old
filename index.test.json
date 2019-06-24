@@ -1,0 +1,39 @@
+{
+  "assoc2table": {
+    "plain": {
+      "input": [{"a:b": "c:d"}],
+      "output": [["a:b", "c:d"]],
+      "assert": "toEqual"
+    },
+    "plain --splitKeys": {
+      "input": [{"a:b": "c:d"}, {"splitKeys": true}],
+      "output": [["a", "b", "c:d"]],
+      "assert": "toEqual"
+    },
+    "plain --putDelimiter": {
+      "input": [{"a:b": "c:d"}, {"putDelimiter": true}],
+      "output": [["a:b", ":", "c:d"]],
+      "assert": "toEqual"
+    },
+    "plain --splitLeaves": {
+        "input": [{"a:b": "c:d"}, {"splitLeaves": true}],
+        "output": [["a:b", "c", "d"]],
+        "assert": "toEqual"
+    },
+    "plain --splitLeaves --putDelimiter --splitKeys": {
+      "input": [{"a:b": "c:d"}, {"splitLeaves": true, "splitKeys": true, "putDelimiter": true}],
+      "output": [["a", "b", ":", "c", "d"]],
+      "assert": "toEqual"
+    },
+    "plainCut --splitLeaves --putDelimiter --splitKeys": {
+      "input": [{"a:": "c:"}, {"splitLeaves": true, "splitKeys": true, "putDelimiter": true}],
+      "output": [["a", ":", "c"]],
+      "assert": "toEqual"
+    },
+    "plainCut --splitLeaves --putDelimiter --splitKeys --keepBlank": {
+      "input": [{"a:": "c:"}, {"splitLeaves": true, "splitKeys": true, "putDelimiter": true, "keepBlank": true}],
+      "output": [["a", "", ":", "c", ""]],
+      "assert": "toEqual"
+    }
+  }
+}

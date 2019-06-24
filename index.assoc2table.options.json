@@ -1,0 +1,7 @@
+{
+  "delimiter": ":",
+  "putDelimiter": false,
+  "splitKeys": false,
+  "splitLeaves": false,
+  "keepBlank": false
+}
