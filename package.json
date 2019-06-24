@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "description": "",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "push": "npm run test && git commit -a && git push"
   },
   "keywords": [],
   "author": "",
