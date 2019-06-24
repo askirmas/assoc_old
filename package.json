@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "test": "jest",
-    "push": "npm run test && git commit -a && git push"
+    "push": "npm run test && git add --all && git commit -a && git push"
   },
   "keywords": [],
   "author": "",

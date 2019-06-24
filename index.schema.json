@@ -1,0 +1,39 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "properties": {
+    "assoc2table": {
+      "$schema": "./function.schema.json",
+      "properties": {
+        "arguments": {
+          "1": "2"
+        }
+      },
+      "title": "assoc2table",
+      "description": "Converts assoc to table",
+      "arguments": [
+        {
+          "title": "assoc"
+        },
+        {
+          "title": "options",
+          "default": {
+            "$ref": "./index.assoc2table.options.json"
+          }
+        },
+        {
+          "title": "space",
+          "default": []
+        },
+        {
+          "title": "table",
+          "description": "Append to output",
+          "default": []
+        }
+      ],
+      "return": {
+        "type": "array",
+        "items": { "type": "array" }
+      }
+    }  
+  }
+}

@@ -6,7 +6,9 @@ function assoc2table(
   space = [],
   table = []
 ) {
-  const {delimiter, splitLeaves, splitKeys, putDelimiter, keepBlank} = Object.assign({}, assoc2table_options, options),
+  const {
+    delimiter, splitLeaves, splitKeys, putDelimiter, keepBlank
+  } = Object.assign({}, assoc2table_options, options),
     splitting = (doSplit, source) =>
       (doSplit ? source.toString().split(delimiter) : [source])
       .filter(el => keepBlank || el !== '')
