@@ -16,7 +16,7 @@ function assoc2table(
     const keys = splitting(splitKeys, key)
 
     if (typeof value === 'object')
-      assoc2table(value, options, [...space, ...keys], table)  
+      return assoc2table(value, options, [...space, ...keys], table)  
     else 
       table.push([].concat(
         space,
