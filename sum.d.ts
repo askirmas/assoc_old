@@ -1,4 +1,4 @@
 declare module "sum" {
-  function sum(a: int, b: int) :int;
+  function sum(a: number, b: number) :number;
   export = sum
 }

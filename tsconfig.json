@@ -1,0 +1,30 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": false,
+    "target": "es6",
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "dist",
+    "alwaysStrict": true,
+    "declaration": true,
+    "downlevelIteration": true,
+    "emitDeclarationOnly": false,
+    "pretty": true,
+    "strict": true,
+    "watch": true,
+    "baseUrl": ".",
+    "paths": {
+      "*": [
+        "node_modules/*",
+        "*"
+      ]
+    }
+  },
+  "include": [
+    "*"
+  ]
+}

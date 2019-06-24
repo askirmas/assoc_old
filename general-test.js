@@ -43,7 +43,7 @@ test('the shopping list has beer on it', () => {
 function compileAndroidCode() {
   throw new Error('you are using the wrong JDK');
 }
-test('compiling android goes as expected', () => {
+test('compiling android goes as expected', () /*done*/ => {
   expect(compileAndroidCode).toThrow();
   expect(compileAndroidCode).toThrow(Error);
   expect(compileAndroidCode).toThrow('you are using the wrong JDK');
