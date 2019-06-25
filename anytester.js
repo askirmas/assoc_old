@@ -1,7 +1,7 @@
 const executions = {
-  jest: ({title, jsModule, fn, input, assert, output}) =>
+  jest: ({title, jsModule, fn, $arguments, assert, $return}) =>
     test(title,
-      () => expect(jsModule[fn](...input))[assert](output)
+      () => expect(jsModule[fn](...$arguments))[assert]($return)
     ) 
 }
 
@@ -28,14 +28,14 @@ function AnyTester(filename, cwd = process.cwd()) {
 function jsonTestsParser(jsonTests, jsModule) {
   const testSuites = []
   Object.entries(jsonTests).forEach(([fn, tests]) =>
-    Object.entries(tests).forEach(([title, {input, output, assert}]) =>
+    Object.entries(tests).forEach(([title, {$arguments, $return, assert}]) =>
       testSuites.push({
         jsModule,
         title,
         fn,
-        input,
+        $arguments,
         assert,
-        output
+        $return
       })
     )
   )

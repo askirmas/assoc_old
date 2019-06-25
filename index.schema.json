@@ -2,7 +2,7 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "properties": {
     "assoc2table": {
-      "$schema": "./function.schema.json",
+      "$schema": "https://raw.githubusercontent.com/askirmas/assoc/master/function.schema.json",
       "properties": {
         "arguments": {
           "1": "2"

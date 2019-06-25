@@ -1,38 +1,104 @@
 {
+  "merge": {
+    "concat": {
+      "$arguments": [[0, 1], [0, 2], [0, 3]],
+      "assert": "toEqual",
+      "$return": [0, 1, 0, 2, 0, 3]
+    },
+    "lower concat": {
+      "$arguments": [[[0, 1]], [[0, 2]], [[0, 3]]],
+      "assert": "toEqual",
+      "$return": [[0, 1], [0, 2], [0, 3]]
+    },   
+    "nested concat": {
+      "$arguments": [{"a":[0, 1]}, {"a":[0, 2]}, {"a":[0, 3]}],
+      "assert": "toEqual",
+      "$return": {"a":[0, 1, 0, 2,0, 3]}
+    }, 
+    "nested 2 concat": {
+      "$arguments": [{"r":{"a":[0, 1]}}, {"r":{"a":[0, 2]}}, {"r":{"a":[0, 3]}}],
+      "assert": "toEqual",
+      "$return": {"r":{"a":[0, 1, 0, 2,0, 3]}}
+    },  
+    "nested 2 concat 1": {
+      "$arguments": [{"r":{"b":"2","a":[0]}}, {"r":{"b":"2","a":[0]}}, {"r":{"b":"2","a":[0]}}],
+      "assert": "toEqual",
+      "$return": {"r":{"b":"2","a":[0, 0, 0]}}
+    },
+    "deep nested": {
+      "$arguments": [
+        {"req": {"engine": {"method": "POST", "headers": ["Content-Type: json"]}}},
+        {"req": {"engine": {"method": "GET", "url": "xxx", "headers": ["x-frame: yes"]}}}
+      ],
+      "assert": "toEqual",
+      "$return": {"req": {"engine": {"method": "POST", "url": "xxx", "headers": ["Content-Type: json", "x-frame: yes"]}}}
+    },
+    "FAILING": {
+      "$arguments": [
+        {"root": {
+          "str0": "0", "str1": "0",
+          "arr0": [0], "arr1": [1],
+"FAIL": ["a"],
+          "arr3": [1],
+          "obj0": {"0": 0}, "obj1": {"0": [0]}
+        }},{"root": {
+          "str0": [0], "str1": "1", "str2": "1",
+          "arr0": 0, "arr1": 0,
+"FAIL": [1],
+          "arr3": {"0": 0},
+          "obj": {"0": 1}, "obj1": ["0"]
+        }},{"root": {
+          "str0": {"0": 0}, "str2": "2", "str3": "0",
+          "arr0": 0, "arr1": [0],
+"FAIL": [0],
+          "arr3": {"1": 0},
+          "obj0": "1", "obj1": ["1"]
+        }}
+      ],
+      "assert": "toEqual",
+      "$return": {"root": {
+        "str0": "0", "str1": "0", "str2": "1", "str3": "0",
+        "arr0": [0], "arr1": [1, 0],
+"FAIL": ["a"],
+        "arr3": [1],
+        "obj0": {"0": 0}, "obj1": {"0": [0]}
+      }}
+    }
+  },
   "assoc2table": {
     "plain": {
-      "input": [{"a:b": "c:d"}],
-      "output": [["a:b", "c:d"]],
+      "$arguments": [{"a:b": "c:d"}],
+      "$return": [["a:b", "c:d"]],
       "assert": "toEqual"
     },
     "plain --splitKeys": {
-      "input": [{"a:b": "c:d"}, {"splitKeys": true}],
-      "output": [["a", "b", "c:d"]],
+      "$arguments": [{"a:b": "c:d"}, {"splitKeys": true}],
+      "$return": [["a", "b", "c:d"]],
       "assert": "toEqual"
     },
     "plain --putDelimiter": {
-      "input": [{"a:b": "c:d"}, {"putDelimiter": true}],
-      "output": [["a:b", ":", "c:d"]],
+      "$arguments": [{"a:b": "c:d"}, {"putDelimiter": true}],
+      "$return": [["a:b", ":", "c:d"]],
       "assert": "toEqual"
     },
     "plain --splitLeaves": {
-        "input": [{"a:b": "c:d"}, {"splitLeaves": true}],
-        "output": [["a:b", "c", "d"]],
-        "assert": "toEqual"
+      "$arguments": [{"a:b": "c:d"}, {"splitLeaves": true}],
+      "$return": [["a:b", "c", "d"]],
+      "assert": "toEqual"
     },
     "plain --splitLeaves --putDelimiter --splitKeys": {
-      "input": [{"a:b": "c:d"}, {"splitLeaves": true, "splitKeys": true, "putDelimiter": true}],
-      "output": [["a", "b", ":", "c", "d"]],
+      "$arguments": [{"a:b": "c:d"}, {"splitLeaves": true, "splitKeys": true, "putDelimiter": true}],
+      "$return": [["a", "b", ":", "c", "d"]],
       "assert": "toEqual"
     },
     "plainCut --splitLeaves --putDelimiter --splitKeys": {
-      "input": [{"a:": "c:"}, {"splitLeaves": true, "splitKeys": true, "putDelimiter": true}],
-      "output": [["a", ":", "c"]],
+      "$arguments": [{"a:": "c:"}, {"splitLeaves": true, "splitKeys": true, "putDelimiter": true}],
+      "$return": [["a", ":", "c"]],
       "assert": "toEqual"
     },
     "plainCut --splitLeaves --putDelimiter --splitKeys --keepBlank": {
-      "input": [{"a:": "c:"}, {"splitLeaves": true, "splitKeys": true, "putDelimiter": true, "keepBlank": true}],
-      "output": [["a", "", ":", "c", ""]],
+      "$arguments": [{"a:": "c:"}, {"splitLeaves": true, "splitKeys": true, "putDelimiter": true, "keepBlank": true}],
+      "$return": [["a", "", ":", "c", ""]],
       "assert": "toEqual"
     }
   }

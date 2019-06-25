@@ -4,6 +4,7 @@
   "description": "",
   "scripts": {
     "test": "jest",
+    "tde": "jest --watch",
     "push": "npm run test && git add --all && git commit -a && git push"
   },
   "keywords": [],
