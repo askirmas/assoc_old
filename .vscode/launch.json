@@ -7,11 +7,21 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "Jest Test",
+      "name": "Project",
       "program": "${workspaceFolder}\\node_modules\\jest\\bin\\jest",
-      "args": ["--runInBand", "--config=${workspaceFolder}\\jest.config.js"],
-      "console": "integratedTerminal",
-      "internalConsoleOptions": "neverOpen"
+      "args": ["--runInBand", "--colors"],
+      "console": "internalConsole",
+      "internalConsoleOptions": "openOnSessionStart"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Feature",
+      "program": "${workspaceFolder}\\node_modules\\jest\\bin\\jest",
+      "args": ["-t", "simple 1", "--runInBand", "--colors"],
+      "console": "internalConsole",
+      "internalConsoleOptions": "openOnSessionStart",
+      "restart": true
     }
   ]
 }
