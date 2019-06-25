@@ -1,0 +1,10 @@
+{
+  "preset": "ts-jest",
+  "testEnvironment": "node",
+  "globals": {
+    "ts-jest": {
+      ".description": "https://kulshekhar.github.io/ts-jest/user/config/tsConfig",
+      "tsConfig": false
+    }
+  }
+}
