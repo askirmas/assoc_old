@@ -42,7 +42,7 @@ function merge(source, ...donors) {
 
 function merger(source, donors, cbs = []) {
   if (typeof source !== 'object')
-    return source
+    return;
   if (Array.isArray(source))
     return source.push(
       ...[].concat(
@@ -88,8 +88,29 @@ function merger(source, donors, cbs = []) {
   ))
   
   if (cbs.length)
-    return cbs.pop()()
+    cbs.pop()()
+  return;
 }
+
+//from https://jsperf.com/empty-object-comparisons
+/*const  {hasOwnProperty} = Object.prototype
+function is_empty(obj) {
+  // null and undefined are empty
+  if (obj == null)
+    return true;
+  // Assume if it has a length property with a non-zero value
+  // that that property is correct.
+  if (obj.length && obj.length > 0)
+    return false;
+  if (obj.length === 0)
+    return true;
+
+  for (var key in obj)
+    if (hasOwnProperty.call(obj, key))
+      return false;
+  return true;
+}*/
+
 
 module.exports = {
   assoc2table,
