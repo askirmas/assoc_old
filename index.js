@@ -1,5 +1,12 @@
 'use strict'
 const assoc2table_options = require('./index.assoc2table.options')
+/**
+ * 
+ * @param {{}} assoc 
+ * @param {{}} options 
+ * @param {string[]} space 
+ * @param {string[][]} table 
+ */
 function assoc2table(
   assoc,
   options = assoc2table_options,
@@ -34,6 +41,35 @@ function assoc2table(
   })
   return table
 }
+
+/**
+ * Tail precendance
+ * @param {string[][]} table 
+ * @param {{}} assoc 
+ */
+function table2assoc(table, assoc = {}) {
+  if (typeof assoc !== 'object')
+    return;
+  row: for (let ri = table.length - 1; ~ri; ri--) {
+    const row = table[ri], {length} = row
+    if (length < 2)
+      continue;
+    let pointer = assoc
+    for (let i = 0; i < length - 2; i++) {
+      const key = row[i]
+      if (!(key in pointer))
+        pointer[key] = {}
+      pointer = pointer[key]
+      if (typeof pointer !== 'object')
+        continue row;
+    }
+    const key = row[length - 2]
+    if (typeof pointer === 'object' && !(key in pointer))
+      pointer[key] = row[length - 1] 
+  }
+  return assoc
+}
+
 
 function merge(source, ...donors) {
   merger(source, donors)
@@ -111,8 +147,10 @@ function is_empty(obj) {
   return true;
 }*/
 
+// TODO: forEach key as keys + for or while
 
 module.exports = {
   assoc2table,
-  merge
+  merge,
+  table2assoc
 }

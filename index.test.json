@@ -1,4 +1,42 @@
 {
+  "table2assoc": {
+    "simple 0.1": {
+      "$arguments": [[
+        ["r", "k", "v", "0"],
+        ["r", "k", "v"],
+        ["r", "k"],
+        ["r"]
+      ]],
+      "$return": {
+        "r": "k"
+      },
+      "assert": "toEqual"
+    },
+    "simple 0.2": {
+      "$arguments": [[
+        ["r", "k", "v", "0"],
+        ["r", "k", "v"],
+        ["r", "v"],
+        ["r"]
+      ]],
+      "$return": {
+        "r": "v"
+      },
+      "assert": "toEqual"
+    },
+    "simple 1": {
+      "$arguments": [[
+        ["r"],
+        ["r", "k"],
+        ["r", "k", "v"],
+        ["r", "k", "v", 0]
+      ]],
+      "$return": {
+        "r": {"k": {"v": 0}}
+      },
+      "assert": "toEqual"
+    }
+  },
   "merge": {
     "concat": {
       "$arguments": [[0, 1], [0, 2], [0, 3]],
