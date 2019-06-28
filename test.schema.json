@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "properties": {
+    "$schema": {
+      "default": "../test.schema.json"
+    }
+  },
+  "patternProperties": {
+    ".*": {
+      "title": "Exported unit",
+      "patternProperties": {
+        ".*": {
+          "title": "Test name",
+          "required": ["assert", "$return"],
+          "properties": {
+            "assert": {
+              "description": "Assert to use",
+              "$ref": "./jest.asserts.json"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -30,9 +30,13 @@ function AnyTester(filename, cwd = process.cwd()) {
   })
 }
 
+const systemRootKeys = ['$schema'];
+
 function jsonTestsParser(jsonTests, jsModule) {
   const testSuites = []
-  Object.entries(jsonTests).forEach(([fn, tests]) =>
+  Object.entries(jsonTests).forEach(([fn, tests]) =>{
+    if (systemRootKeys.includes(fn))
+      return;
     Object.entries(tests).forEach(([title, {$arguments, $return, assert}]) =>
       testSuites.push({
         jsModule,
@@ -43,7 +47,7 @@ function jsonTestsParser(jsonTests, jsModule) {
         $return
       })
     )
-  )
+  })
   return testSuites
 }
 
