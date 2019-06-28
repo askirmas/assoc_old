@@ -1,8 +1,16 @@
+'use strict';
 const executions = {
   jest: ({title, jsModule, fn, $arguments, assert, $return}) =>
     test(title,
       () => expect(jsModule[fn](...$arguments))[assert]($return)
     ) 
+}
+
+module.exports = {
+  default: (...args) => new AnyTester(...args),
+  AnyTester,
+  jsonTestsParser,
+  executions
 }
 
 function AnyTester(filename, cwd = process.cwd()) {
@@ -49,11 +57,4 @@ function jsonTestsParser(jsonTests, jsModule) {
     )
   })
   return testSuites
-}
-
-module.exports = {
-  default: (...args) => new AnyTester(...args),
-  AnyTester,
-  jsonTestsParser,
-  executions
 }

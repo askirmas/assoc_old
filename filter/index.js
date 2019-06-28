@@ -1,4 +1,8 @@
 'use strict'
+module.exports = {
+  filterLeaves, filterNull
+}
+
 const {deleting, isEmpty, forEachKey} = require('../common')
 
 function filterLeaves(source, conditioning) {
@@ -18,8 +22,4 @@ function filterLeaves(source, conditioning) {
 function filterNull(source) {
   filterLeaves(source, val => val !== null)
   return source 
-}
-
-module.exports = {
-  filterLeaves, filterNull
 }

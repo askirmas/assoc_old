@@ -1,3 +1,8 @@
+'use strict';
+module.exports = {
+  merge
+}
+
 function merge(source, ...donors) {
   merger(source, donors)
   return source
@@ -52,8 +57,4 @@ function merger(source, donors, cbs = []) {
   if (cbs.length)
     cbs.pop()()
   return;
-}
-
-module.exports = {
-  merge
 }

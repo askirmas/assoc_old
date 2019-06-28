@@ -1,3 +1,8 @@
+'use strict';
+module.exports = {
+  isEmpty, forEachKey, deleting
+}
+
 //Origin https://jsperf.com/empty-object-comparisons
 const  {hasOwnProperty} = Object.prototype
 function isEmpty(obj) {
@@ -32,8 +37,4 @@ function deleting(source, key) {
     source.splice(key, 1)
   } else
     delete source[key]
-}
-
-module.exports = {
-  isEmpty, forEachKey, deleting
 }

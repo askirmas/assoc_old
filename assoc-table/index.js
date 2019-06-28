@@ -1,22 +1,26 @@
 'use strict';
-const assoc_table_options = require('./options')
+module.exports = {
+  assoc2table, table2assoc
+}
+
+const optionsDefault = require('./options')
 
 /**
  * 
  * @param {{}} assoc 
- * @param {{}} options 
+ * @param {iOptions} options 
  * @param {string[]} space 
  * @param {string[][]} table 
  */
 function assoc2table(
   assoc,
-  options = assoc_table_options,
+  options = optionsDefault,
   space = [],
   table = []
 ) {
   const {
     delimiter, splitLeaves, splitKeys, putDelimiter, keepBlank
-  } = Object.assign({}, assoc_table_options, options),
+  } = Object.assign({}, optionsDefault, options),
     splitting = (doSplit, source) =>
       (doSplit ? source.toString().split(delimiter) : [source])
       .filter(el => keepBlank || el !== '')
@@ -69,8 +73,4 @@ function table2assoc(table, assoc = {}) {
       pointer[key] = row[length - 1] 
   }
   return assoc
-}
-
-module.exports = {
-  assoc2table, table2assoc
 }
