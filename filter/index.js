@@ -1,4 +1,3 @@
-'use strict'
 module.exports = {
   filterLeaves, filterNull
 }
@@ -9,7 +8,7 @@ function filterLeaves(source, conditioning) {
   if (typeof source !== 'object' || isEmpty(source))
     return conditioning(source)
   //Bad source - if children exists and only bad
-  let wasGood, wasBad; 
+  let wasGood = false, wasBad = false; 
   forEachKey(source, key => {
     if (filterLeaves(source[key], conditioning))
       return  wasGood = wasGood || true 

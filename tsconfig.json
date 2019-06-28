@@ -1,30 +1,26 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
+    "noEmit": true,
     "module": "commonjs",
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": false,
     "target": "es6",
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "moduleResolution": "node",
     "sourceMap": true,
     "outDir": "dist",
     "alwaysStrict": true,
-    "declaration": true,
+    "strictBindCallApply": true,
     "downlevelIteration": true,
     "emitDeclarationOnly": false,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "allowJs": true,
+    "checkJs": true,
     "pretty": true,
-    "strict": true,
-    "watch": true,
-    "baseUrl": ".",
-    "paths": {
-      "*": [
-        "node_modules/*",
-        "*"
-      ]
-    }
+    "strict": true
   },
-  "include": [
-    "*"
+  "exclude": [
+    "node_modules",
+    "coverage"
   ]
 }

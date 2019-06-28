@@ -5,13 +5,6 @@ module.exports = {
 
 const optionsDefault = require('./options')
 
-/**
- * 
- * @param {{}} assoc 
- * @param {iOptions} options 
- * @param {string[]} space 
- * @param {string[][]} table 
- */
 function assoc2table(
   assoc,
   options = optionsDefault,
@@ -33,6 +26,7 @@ function assoc2table(
       return assoc2table(value, options, [...space, ...keys], table)  
     else 
       table.push([].concat(
+        // @ts-ignore
         space,
         space.length
         ? [delimiter]
