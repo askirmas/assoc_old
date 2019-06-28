@@ -1,19 +1,28 @@
 'use strict';
-const executions = {
-  jest: ({title, jsModule, fn, $arguments, assert, $return}) =>
-    test(title,
-      () => expect(jsModule[fn](...$arguments))[assert]($return)
-    ) 
-}
+const {existsSync} = require('fs'),
+  instances = require('./instances')
 
 module.exports = {
   default: (...args) => new AnyTester(...args),
-  AnyTester,
-  jsonTestsParser,
-  executions
+  AnyTester
 }
 
-function AnyTester(filename, cwd = process.cwd()) {
+const defaultConfig = {
+  systemRootKeys: ['$schema'],
+  testDataPostfix: '.test.json',
+  testMask: '\\.test\\.[a-z]+$',
+  pathFromFileToTest: './'
+}
+
+function AnyTester(filename, cwd = process.cwd(), scriptConfig = {}) {
+  const configPath = `${cwd}/anytester.config`,
+    config = Object.assign({},
+      scriptConfig,
+      existsSync(configPath)
+      ? require(configPath)
+      : {},
+      defaultConfig
+    ) 
   let instance
   if (process.argv[1].match(/[\/\\]jest(-worker)?[\/\\]/))
     instance = 'jest'
@@ -22,13 +31,20 @@ function AnyTester(filename, cwd = process.cwd()) {
     process.exit(1)
   }
 
-  const path = filename.replace(/\.test\.[a-z]+$/i, ''),
+  const path = filename.toLowerCase()
+    .replace(cwd.toLowerCase(), '', 1)
+    .replace(new RegExp(config.testMask, 'i'), ''),
     name = path.match(/[^\\\/]+$/g)[0],
-    jsModule =  require(path)
+    jsModule =  require(join(config.pathFromFileToTest, path))
+
   Object.assign(this, {
     path, name, jsModule, 
-    jsonTests: jsonTestsParser(require(`${path}.test.json`), jsModule),
-    run: executions[instance]
+    jsonTests: jsonTestsParser(
+      require(join(config.pathFromFileToTest, path, config.testDataPostfix)),
+      jsModule,
+      scriptConfig
+    ),
+    run: instances[instance]
   })
   
   Object.assign(this, {
@@ -38,9 +54,7 @@ function AnyTester(filename, cwd = process.cwd()) {
   })
 }
 
-const systemRootKeys = ['$schema'];
-
-function jsonTestsParser(jsonTests, jsModule) {
+function jsonTestsParser(jsonTests, jsModule, {systemRootKeys = []} = {}) {
   const testSuites = []
   Object.entries(jsonTests).forEach(([fn, tests]) =>{
     if (systemRootKeys.includes(fn))
@@ -57,4 +71,8 @@ function jsonTestsParser(jsonTests, jsModule) {
     )
   })
   return testSuites
+}
+
+function join(...args) {
+  return args.join('')
 }
