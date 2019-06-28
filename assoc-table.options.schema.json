@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {},
+    "delimiter": {
+      "type": "string"
+    },
+    "putDelimiter": {
+      "type": "boolean"
+    },
+    "splitKeys": {
+      "type": "boolean"
+    },
+    "splitLeaves": {
+      "type": "boolean"
+    },
+    "keepBlank": {
+      "type": "boolean"
+    }    
+  }
+}

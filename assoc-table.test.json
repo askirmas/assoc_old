@@ -1,0 +1,77 @@
+{
+  "assoc2table": {
+    "plain": {
+      "$arguments": [{"a:b": "c:d"}],
+      "$return": [["a:b", "c:d"]],
+      "assert": "toEqual"
+    },
+    "plain --splitKeys": {
+      "$arguments": [{"a:b": "c:d"}, {"splitKeys": true}],
+      "$return": [["a", "b", "c:d"]],
+      "assert": "toEqual"
+    },
+    "plain --putDelimiter": {
+      "$arguments": [{"a:b": "c:d"}, {"putDelimiter": true}],
+      "$return": [["a:b", ":", "c:d"]],
+      "assert": "toEqual"
+    },
+    "plain --splitLeaves": {
+      "$arguments": [{"a:b": "c:d"}, {"splitLeaves": true}],
+      "$return": [["a:b", "c", "d"]],
+      "assert": "toEqual"
+    },
+    "plain --splitLeaves --putDelimiter --splitKeys": {
+      "$arguments": [{"a:b": "c:d"}, {"splitLeaves": true, "splitKeys": true, "putDelimiter": true}],
+      "$return": [["a", "b", ":", "c", "d"]],
+      "assert": "toEqual"
+    },
+    "plainCut --splitLeaves --putDelimiter --splitKeys": {
+      "$arguments": [{"a:": "c:"}, {"splitLeaves": true, "splitKeys": true, "putDelimiter": true}],
+      "$return": [["a", ":", "c"]],
+      "assert": "toEqual"
+    },
+    "plainCut --splitLeaves --putDelimiter --splitKeys --keepBlank": {
+      "$arguments": [{"a:": "c:"}, {"splitLeaves": true, "splitKeys": true, "putDelimiter": true, "keepBlank": true}],
+      "$return": [["a", "", ":", "c", ""]],
+      "assert": "toEqual"
+    }
+  },
+  "table2assoc": {
+    "simple 0.1": {
+      "$arguments": [[
+        ["r", "k", "v", "0"],
+        ["r", "k", "v"],
+        ["r", "k"],
+        ["r"]
+      ]],
+      "$return": {
+        "r": "k"
+      },
+      "assert": "toEqual"
+    },
+    "simple 0.2": {
+      "$arguments": [[
+        ["r", "k", "v", "0"],
+        ["r", "k", "v"],
+        ["r", "v"],
+        ["r"]
+      ]],
+      "$return": {
+        "r": "v"
+      },
+      "assert": "toEqual"
+    },
+    "simple 1": {
+      "$arguments": [[
+        ["r"],
+        ["r", "k"],
+        ["r", "k", "v"],
+        ["r", "k", "v", 0]
+      ]],
+      "$return": {
+        "r": {"k": {"v": 0}}
+      },
+      "assert": "toEqual"
+    }
+  }
+}

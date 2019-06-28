@@ -1,4 +1,5 @@
 {
+  "$schema": "./assoc-table.options.schema.json",
   "delimiter": ":",
   "putDelimiter": false,
   "splitKeys": false,

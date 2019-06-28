@@ -22,7 +22,13 @@ function AnyTester(filename, cwd = process.cwd()) {
     path, name, jsModule, 
     jsonTests: jsonTestsParser(require(`./${name}.test.json`), jsModule),
     run: executions[instance]
-  }) 
+  })
+  
+  Object.assign(this, {
+    runTest: function () {
+      return this.jsonTests.map(this.run) 
+    }
+  })
 }
 
 function jsonTestsParser(jsonTests, jsModule) {
