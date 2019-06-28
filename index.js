@@ -147,9 +147,39 @@ function isEmpty(obj) {
 }
 
 function forEachKey(source, fn) {
+  if (isEmpty(source))
+    return;
   const keys = Object.keys(source)
-  for (i = keys.length; i; i--)
-    fn(keys[i - 1], source, keys, i - 1)
+  for (let i = keys.length; i; i--)
+    fn(keys[i - 1]/*, i - 1, keys, source*/)
+}
+
+function filterLeaves(source, conditioning) {
+  if (typeof source !== 'object' || isEmpty(source))
+    return conditioning(source)
+  //Bad source - if children exists and only bad
+  let wasGood, wasBad; 
+  forEachKey(source, key => {
+    if (filterLeaves(source[key], conditioning))
+      return  wasGood = wasGood || true 
+    deleting(source, key)
+    wasBad = wasBad || true
+  })
+  return wasGood || !wasBad
+}
+
+function filterNull(source) {
+  filterLeaves(source, val => val !== null)
+  return source 
+}
+
+function deleting(source, key) {
+  if (!(key in source))
+    return source;
+  if ('splice' in source) {
+    source.splice(key, 1)
+  } else
+    delete source[key]
 }
 
 module.exports = {
@@ -157,5 +187,7 @@ module.exports = {
   merge,
   table2assoc,
   isEmpty,
-  forEachKey
+  forEachKey,
+  filterLeaves,
+  filterNull
 }

@@ -1,4 +1,43 @@
 {
+  "filterNull": {
+    "empty": {
+      "$arguments": [{}],
+      "$return": {},
+      "assert": "toEqual"
+    },
+    "node": {
+      "$arguments": [{"a": false, "b": {}}],
+      "$return": {"a": false, "b": {}},
+      "assert": "toEqual"
+    },    
+    "plain 1 null": {
+      "$arguments": [{"x": null, "a": 0}],
+      "$return": {"a": 0},
+      "assert": "toEqual"
+    },
+    "plain N null": {
+      "$arguments": [{"x": null, "y": null, "z": null, "a": []}],
+      "$return": {"a": []},
+      "assert": "toEqual"
+    },
+    "2d 1 null": {
+      "$arguments": [{
+        "x": [[], null, {}]
+      }],
+      "$return": {"x" : [[], {}]},
+      "assert": "toEqual"
+    },    
+    "2D N null": {
+      "$arguments": [{
+        "x": {"x": null, "y": null, "z": null},
+        "y": {"x": null, "y": null, "z": null, "a": 0},
+        "z": {"x": null, "y": null, "z": null},
+        "a": 0
+      }],
+      "$return": {"a": 0, "y": {"a": 0}},
+      "assert": "toEqual"
+    }
+  }, 
   "table2assoc": {
     "simple 0.1": {
       "$arguments": [[
