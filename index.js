@@ -75,7 +75,6 @@ function merge(source, ...donors) {
   merger(source, donors)
   return source
 }
-
 function merger(source, donors, cbs = []) {
   if (typeof source !== 'object')
     return;
@@ -147,7 +146,11 @@ function is_empty(obj) {
   return true;
 }*/
 
-// TODO: forEach key as keys + for or while
+function forEachKey(source, fn) {
+  const keys = Object.keys(source)
+  for (i = keys.length; i; i--)
+    fn(keys[i - 1], source, keys, i - 1)
+}
 
 module.exports = {
   assoc2table,
