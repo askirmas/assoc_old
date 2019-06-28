@@ -1,5 +1,5 @@
 'use strict';
-const assoc_table_options = require('./assoc-table.options')
+const assoc_table_options = require('./options')
 
 /**
  * 

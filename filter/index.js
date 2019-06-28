@@ -1,5 +1,5 @@
 'use strict'
-const {deleting, isEmpty, forEachKey} = require('./common')
+const {deleting, isEmpty, forEachKey} = require('../common')
 
 function filterLeaves(source, conditioning) {
   if (typeof source !== 'object' || isEmpty(source))

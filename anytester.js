@@ -14,13 +14,12 @@ function AnyTester(filename, cwd = process.cwd()) {
     process.exit(1)
   }
 
-  const path = filename.replace(cwd, '', 1).replace(/\.test\.[a-z]+$/i, ''),
+  const path = filename.replace(/\.test\.[a-z]+$/i, ''),
     name = path.match(/[^\\\/]+$/g)[0],
-    jsModule =  require(`./${name}`)
-
+    jsModule =  require(path)
   Object.assign(this, {
     path, name, jsModule, 
-    jsonTests: jsonTestsParser(require(`./${name}.test.json`), jsModule),
+    jsonTests: jsonTestsParser(require(`${path}.test.json`), jsModule),
     run: executions[instance]
   })
   
