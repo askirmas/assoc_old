@@ -127,9 +127,9 @@ function merger(source, donors, cbs = []) {
   return;
 }
 
-//from https://jsperf.com/empty-object-comparisons
-/*const  {hasOwnProperty} = Object.prototype
-function is_empty(obj) {
+//Origin https://jsperf.com/empty-object-comparisons
+const  {hasOwnProperty} = Object.prototype
+function isEmpty(obj) {
   // null and undefined are empty
   if (obj == null)
     return true;
@@ -144,7 +144,7 @@ function is_empty(obj) {
     if (hasOwnProperty.call(obj, key))
       return false;
   return true;
-}*/
+}
 
 function forEachKey(source, fn) {
   const keys = Object.keys(source)
@@ -155,5 +155,7 @@ function forEachKey(source, fn) {
 module.exports = {
   assoc2table,
   merge,
-  table2assoc
+  table2assoc,
+  isEmpty,
+  forEachKey
 }
