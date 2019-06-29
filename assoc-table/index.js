@@ -1,9 +1,10 @@
 'use strict';
-module.exports = {
-  assoc2table, table2assoc
-}
+const optionsDefault = require('./options'),
+  {forEachKey, isEmpty} = require('../common')
 
-const optionsDefault = require('./options')
+module.exports = {
+  assoc2table, table2assoc, repairIndexes
+}
 
 function assoc2table(
   assoc,
@@ -69,5 +70,28 @@ function table2assoc(table, assoc = {}) {
     if (typeof pointer === 'object' && !(key in pointer))
       pointer[key] = row[length - 1] 
   }
-  return assoc
+  return repairIndexes(assoc)
+}
+
+function repairIndexes(source) {
+  if (
+    typeof source !== 'object'
+    || isEmpty(source)
+    || Array.isArray(source)
+  ) return source
+
+  forEachKey(source, key =>
+    source[key] = repairIndexes(source[key])
+  )
+  
+  let result = [], repaired = true
+  forEachKey(source, (_, i) => {
+    if (i in source)
+      result.push(source[i])
+    else {
+      result = source
+      return false
+    }
+  })
+  return result
 }

@@ -6,7 +6,11 @@ export function assoc2table(
   table?: string[][]
 ): string[][]
 
-export function table2assoc(
+export function table2assoc<T = [] | object>(
   table: string[][],
-  assoc?: [] | object
-): [] | object
+  assoc?: T
+): T
+
+export function repairIndexes<T>(
+  source: T
+): [] | T

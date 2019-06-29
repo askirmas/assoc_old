@@ -36,6 +36,16 @@
       "assert": "toEqual"
     }
   },
+  "repairIndexes": {
+    "simple good": {
+      "$arguments": [{
+        "1": 1,
+        "0": 0
+      }],
+      "$return": [0, 1],
+      "assert": "toEqual"
+    }
+  },
   "table2assoc": {
     "simple 0.1": {
       "$arguments": [[
@@ -72,6 +82,14 @@
         "r": {"k": {"v": 0}}
       },
       "assert": "toEqual"
-    }
+    },
+    "with repair": {
+      "$arguments": [[
+        [1, 1],
+        ["0", 0]
+      ]],
+      "$return": [0, 1],
+      "assert": "toEqual"
+    } 
   }
 }

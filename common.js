@@ -26,9 +26,11 @@ function isEmpty(obj) {
 function forEachKey(source, fn) {
   if (isEmpty(source))
     return;
-  const keys = Object.keys(source)
-  for (let i = keys.length; i; i--)
-    fn(keys[i - 1]/*, i - 1, keys, source*/)
+  const keys = Object.keys(source),
+    {length} = keys
+  for (let i = length; i; i--)
+    if (false === fn(keys[length - i], length - i, /*keys, source*/))
+      break
 }
 
 function deleting(source, key) {

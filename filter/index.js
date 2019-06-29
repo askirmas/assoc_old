@@ -11,7 +11,8 @@ function filterLeaves(source, conditioning) {
   let wasGood = false, wasBad = false; 
   forEachKey(source, key => {
     if (filterLeaves(source[key], conditioning))
-      return  wasGood = wasGood || true 
+      return wasGood = wasGood || true
+       
     deleting(source, key)
     wasBad = wasBad || true
   })
