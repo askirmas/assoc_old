@@ -6,6 +6,9 @@ module.exports = {
   assoc2table, table2assoc, repairIndexes
 }
 
+/**
+ * Tail precendance
+ */
 function assoc2table(
   assoc,
   options = optionsDefault,
@@ -47,8 +50,6 @@ function assoc2table(
 
 /**
  * Tail precendance
- * @param {string[][]} table 
- * @param {{}} assoc 
  */
 function table2assoc(table, assoc = {}) {
   if (typeof assoc !== 'object')

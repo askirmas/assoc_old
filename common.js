@@ -23,6 +23,10 @@ function isEmpty(obj) {
   return true;
 }
 
+/**
+ * Loop
+ * @param fn Break loop with ```return false```
+ */
 function forEachKey(source, fn) {
   if (isEmpty(source))
     return;
