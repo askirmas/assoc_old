@@ -4,5 +4,6 @@
   "putDelimiter": false,
   "splitKeys": false,
   "splitLeaves": false,
-  "keepBlank": false
+  "keepBlank": false,
+  "stringRow": false
 }

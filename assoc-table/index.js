@@ -6,6 +6,13 @@ module.exports = {
   assoc2table, table2assoc, repairIndexes
 }
 
+function combineArrays(...sources) {
+  return [].concat(...sources)
+}
+function combineStrings(delimiter, ...sources) {
+  return sources.map(s => s.join('delimiter')).join(delimiter)
+}
+
 /**
  * Tail precendance
  */
@@ -16,8 +23,9 @@ function assoc2table(
   table = []
 ) {
   const {
-      delimiter, splitLeaves, splitKeys, putDelimiter, keepBlank
+      delimiter, splitLeaves, splitKeys, putDelimiter, keepBlank, stringRow
     } = Object.assign({}, optionsDefault, options),
+    combine = stringRow ? (...args) => combineStrings(delimiter, ...args) : combineArrays,
     splitting = (doSplit, source) =>
       (
         doSplit
@@ -32,7 +40,7 @@ function assoc2table(
     if (typeof value === 'object')
       return assoc2table(value, options, [...space, ...keys], table)  
     else 
-      table.push([].concat(
+      table.push(combine(
         // @ts-ignore
         space,
         space.length

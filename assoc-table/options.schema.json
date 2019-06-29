@@ -17,6 +17,9 @@
     },
     "keepBlank": {
       "type": "boolean"
-    }    
+    },
+    "stringRow": {
+      "type": "boolean"
+    }
   }
 }
