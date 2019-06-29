@@ -1,3 +1,4 @@
+/// <reference path="./common.d.ts"/>
 'use strict';
 module.exports = {
   isEmpty, forEachKey, deleting

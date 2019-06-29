@@ -5,8 +5,7 @@
   "testEnvironment": "node",
   "globals": {
     "ts-jest": {
-      ".description": "https://kulshekhar.github.io/ts-jest/user/config/tsConfig",
-      "tsConfig": false
+      ".description": "https://kulshekhar.github.io/ts-jest/user/config/tsConfig"
     }
   }
 }

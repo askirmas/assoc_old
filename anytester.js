@@ -1,3 +1,4 @@
+// @ts-nocheck
 'use strict';
 const executions = {
   jest: ({title, jsModule, fn, $arguments, assert, $return}) =>

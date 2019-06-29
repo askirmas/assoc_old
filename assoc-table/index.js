@@ -12,11 +12,14 @@ function assoc2table(
   table = []
 ) {
   const {
-    delimiter, splitLeaves, splitKeys, putDelimiter, keepBlank
-  } = Object.assign({}, optionsDefault, options),
+      delimiter, splitLeaves, splitKeys, putDelimiter, keepBlank
+    } = Object.assign({}, optionsDefault, options),
     splitting = (doSplit, source) =>
-      (doSplit ? source.toString().split(delimiter) : [source])
-      .filter(el => keepBlank || el !== '')
+      (
+        doSplit
+        ? source.toString().split(delimiter)
+        : [source]
+      ).filter(el => keepBlank || el !== '')
 
   Object.entries(assoc)
   .forEach(([key, value]) => {

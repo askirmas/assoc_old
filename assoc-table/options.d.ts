@@ -1,10 +1,3 @@
-declare const options: iOptions;
-interface iOptions {
-  delimiter: string,
-  putDelimiter: boolean,
-  splitKeys: boolean,
-  splitLeaves: boolean,
-  keepBlank: boolean
-}
-
+import {iOptionsDefaults} from './options.i'
+declare const options: iOptionsDefaults
 export = options
