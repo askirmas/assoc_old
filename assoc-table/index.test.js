@@ -1,1 +1,1 @@
-require('../anytester').default(__filename).runTest()
+require('../anytester')()

@@ -1,0 +1,3 @@
+[submodule "anytester"]
+	path = anytester
+	url = git@github.com:askirmas/anytester.git

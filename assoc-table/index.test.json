@@ -1,4 +1,5 @@
 {
+  "$schema": "../anytester/test.schema.json",
   "assoc2table": {
     "plain": {
       "$arguments": [{"a:b": "c:d"}],
